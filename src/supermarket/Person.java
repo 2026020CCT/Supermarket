@@ -9,28 +9,52 @@ package supermarket;
  * @author eska
  */
 public class Person {
-    private String name;
+    private String fname;
+    private String lname;
+    private String gender;
+    private String email;
     private int id;
     
-    public Person(String name, int id){
-        this.name = name;
+    public Person(String fname, String lname, String gender, String email, int id){
+        this.fname = fname;
+        this.lname = lname;
+        this.gender = gender;
+        this.email = email;
         this.id = id;
     }
     
-    public String getName(){
-        return name;
+    
+    public String getFullName(){
+        return (fname+" "+lname);
+    }
+    
+    public String getEmail(){
+        return email;
+    }
+    
+    public String getGender(){
+        return gender;
     }
     
     public int getId(){
         return id;
     }
     
-    public void setName(String name){
-        this.name = name;
+    public void setName(String fname, String lname){
+        this.fname = fname;
+        this.lname = lname;
+    }
+    
+    public void setGender(String gender){
+        this.gender = gender;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
     }
     
     @Override
     public String toString(){
-        return "ID: "+id+"| Name: "+name;
+        return "ID: "+id+"| First Name: "+fname+"| Last Name: "+lname+"|Gender: "+gender+"| Email: "+email;
     }
 }
