@@ -22,25 +22,24 @@ public class Sorting {
             int pivotIndex = partition(list, low, high);
 
             quickSortRecursive(list, low, pivotIndex - 1);
-            quickSortRecursive(list, pivotIndex, high);
+            quickSortRecursive(list, pivotIndex+1, high);
         }
-
     }
 
-    public static int partition(ArrayList<Employee> list, int i, int size) {
+    public static int partition(ArrayList<Employee> list, int low, int high) {
         Employee employeeA, employeeB;
-        while (i < size) {
-            employeeA = list.get(i);
-            employeeB = list.get(size);
+        while (low < high) {
+            employeeA = list.get(low);
+            employeeB = list.get(high);
             if (employeeA.getFname().compareToIgnoreCase(employeeB.getFname()) > 0) {
-                list.set(i, list.get(size));
-                list.set(size, employeeA);
-                list.set(size - 1, employeeB);
-                size--;
+                list.set(low, list.get(high-1));
+                list.set(high, employeeA);
+                list.set(high - 1, employeeB);
+                high--;
             } else {
-                i++;
+                low++;
             }
         }
-        return size;
+        return high;
     }
 }
