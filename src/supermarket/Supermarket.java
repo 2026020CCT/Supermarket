@@ -4,7 +4,7 @@
  */
 package supermarket;
 
-import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,49 +13,85 @@ import java.util.Scanner;
  */
 public class Supermarket {
 
+    private static ArrayList<Employee> employeeList = new ArrayList<>();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         // TODO code application logic here
-        try {
 
-            // FileReader Class used
-            FileReader fileReader = new FileReader("SampleData.txt");
+        
+        loadSampleData();
 
-            System.out.println("Reading char by char : \n");
-            int i;
-
-            // Using read method
-//            while ((i = fileReader.read()) != -1) {
-//                System.out.print((char) i);
-//            }
-//            System.out.println("Reading using array : \n");
-//            char[] charArray = new char[10];
-            // Using read method for to get character array
-//            fileReader.read(charArray);
-//            System.out.print(charArray);
-            // Close method called
-//            fileReader.close();
-//            System.out.println("FileReader closed!");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         while (true) {
-            System.out.println("1: Sort");
-            System.out.println("2: Search");
-            System.out.println("3: Add record");
-            System.out.println("4: Create Binary Tree");
-            System.out.println("5: Exit");
+            // Display the menu using Enum
+            MenuOption.displayMenu();
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // clear the buffer
 
-            switch (choice){
-                case 1: 
-            } 
+            MenuOption selected = MenuOption.fromNumber(choice);
+
+            if (selected == null) {
+                System.out.println("Invalid option. Please try again.\n");
+                continue;
+            }
+
+            // Call the correct method based on user choice
+            switch (selected) {
+                case SORT:
+                    sortEmployees();
+                    break;
+
+                case SEARCH:
+                    searchEmployee(sc);
+                    break;
+
+                case ADD_RECORDS:
+                    addNewEmployee(sc);
+                    break;
+
+                case CREATE_BINARY_TREE:
+                    createBinaryTree();
+                    break;
+
+                case EXIT:
+                    System.out.println("Thank you for using the Supermarket System. Goodbye!");
+                    sc.close();
+                    return;
             }
         }
+    }
+
+    // ========== METHODS ==========
+    // 1. Sort method
+    public static void sortEmployees() {
+        System.out.println("\n--- Sorting Employees ---");
 
     }
+
+    // 2. Search method
+    public static void searchEmployee(Scanner sc) {
+        System.out.println("\n--- Search Employee ---");
+        System.out.print("Enter name to search: ");
+        String name = sc.nextLine();
+    }
+
+    // 3. Add new employee method
+    public static void addNewEmployee(Scanner sc) {
+        System.out.println("\n--- Add New Employee ---");
+    }
+
+    // 4. Binary Tree method
+    public static void createBinaryTree() {
+        System.out.println("\n--- Creating Employee Hierarchy (Binary Tree) ---");
+    }
+
+    // Optional: Load some sample data
+    public static void loadSampleData() {
+        employeeList = WithFile.readEmployeesFromFile("SampleData.txt");
+        System.out.println("Sample data loaded successfully.");
+    }
+}

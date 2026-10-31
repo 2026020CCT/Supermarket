@@ -15,15 +15,18 @@ public class Person {
     private String email;
     private int id;
     
-    public Person(String fname, String lname, String gender, String email, int id){
+    public Person(int id, String fname, String lname, String gender, String email){
+        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.gender = gender;
         this.email = email;
-        this.id = id;
+        
     }
     
-    
+    public String getFname(){
+        return fname;
+    }
     public String getFullName(){
         return (fname+" "+lname);
     }

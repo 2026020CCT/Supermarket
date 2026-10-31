@@ -9,17 +9,22 @@ package supermarket;
  * @author eska
  */
 public class Employee extends Person {
+
+    private static int nextId =1;
+    private double salary;
     private String department;
     private String position;
+    private String jobTitle;
     private String company;
-    private double salary;
 
-    public Employee(String fname, String lname, String gender, String email, int id, String department, String position, String company, double salary) {
-        super(fname,lname,gender,email,id);
+    public Employee(String fname, String lname, String gender, String email, double salary, String department, String position, String jobTitle, String company) {
+        super(nextId, fname, lname, gender, email);
+        this.salary = salary;
         this.department = department;
         this.position = position;
+        this.jobTitle = jobTitle;
         this.company = company;
-        this.salary = salary;
+        nextId++;
     }
 
     public String getDepartment() {
@@ -30,17 +35,20 @@ public class Employee extends Person {
         return position;
     }
 
+    public String getJobTitle(){
+        return jobTitle;
+    }
+    
     public String getCompany() {
         return company;
     }
-    
-    public double getSalary(){
+
+    public double getSalary() {
         return salary;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " | Position: " + position + 
-               " | Dept: " + department + " | Company: " + company +" | Salary: " + salary;
+        return super.toString() +" | Salary: " + salary + " | Dept: " + department +" | Position: " + position+ " | Job Title: "+jobTitle+" | Company: " + company;
     }
 }
