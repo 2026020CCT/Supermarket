@@ -31,7 +31,7 @@ public class Sorting {
         while (low < high) {
             employeeA = list.get(low);
             employeeB = list.get(high);
-            if (employeeA.getFname().compareToIgnoreCase(employeeB.getFname()) > 0) {
+            if (employeeA.getFullName().compareToIgnoreCase(employeeB.getFullName()) > 0) {
                 list.set(low, list.get(high-1));
                 list.set(high, employeeA);
                 list.set(high - 1, employeeB);

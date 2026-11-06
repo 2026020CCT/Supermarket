@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Supermarket {
 
     private static ArrayList<Employee> employeeList = new ArrayList<>();
+
     /**
      * @param args the command line arguments
      */
@@ -21,7 +22,6 @@ public class Supermarket {
         Scanner sc = new Scanner(System.in);
         // TODO code application logic here
 
-        
         loadSampleData();
 
         while (true) {
@@ -69,7 +69,10 @@ public class Supermarket {
     // 1. Sort method
     public static void sortEmployees() {
         System.out.println("\n--- Sorting Employees ---");
-
+        Sorting.quickSort(employeeList);
+        for (int i = 0; i < 20; i++) {
+            System.out.println(employeeList.get(i).toString());
+        }
     }
 
     // 2. Search method
@@ -77,6 +80,7 @@ public class Supermarket {
         System.out.println("\n--- Search Employee ---");
         System.out.print("Enter name to search: ");
         String name = sc.nextLine();
+
     }
 
     // 3. Add new employee method
