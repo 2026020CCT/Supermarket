@@ -1,45 +1,50 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package supermarket;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author eska
- */
 public class Search {
 
     public static void search(ArrayList<Employee> list, String searchingName) {
+        int index = searchRecursive(list, searchingName, 0, list.size() - 1);
 
-        searchRecursive(list, searchingName, 0, list.size());
-    }
-
-    public static void searchRecursive(ArrayList<Employee> list, String name, int low, int high) {
-
-        int half = low + (high - low) / 2;
-        if (list.get(half).getFname() != name) {
-
-            if (list.get(half).getFname().compareToIgnoreCase(name) < 0) {
-                searchRecursive(list, name, low, half - 1);
-            } else {
-                searchRecursive(list, name, half + 1, high);
-            }
+        if (index == -1) {
+            System.out.println("No employee found with first name: " + searchingName);
+            return;
         }
-        low = half;
-        high = half;
-        while (list.get(half).getFname().compareToIgnoreCase(list.get(low - 1).getFname()) == 0) {
+
+        // Expand left and right to catch every employee with the same first name
+        int low = index;
+        while (low > 0 && list.get(low - 1).getFname().equalsIgnoreCase(searchingName)) {
             low--;
         }
-        while (list.get(half).getFname().compareToIgnoreCase(list.get(high).getFname()) == 0) {
+        int high = index;
+        while (high < list.size() - 1 && list.get(high + 1).getFname().equalsIgnoreCase(searchingName)) {
             high++;
         }
-        for (int position = low; position < high; position++) {
-            String returnvalue = "|| Full name: " + list.get(position).getFullName() + "|| Job title: " + list.get(position).getJobTitle() + "|| Department: " + list.get(position).getDepartment();
-            System.out.println(returnvalue);
+
+        for (int position = low; position <= high; position++) {
+            Employee e = list.get(position);
+            System.out.println("|| Full name: " + e.getFullName()
+                    + "|| Job title: " + e.getJobTitle()
+                    + "|| Department: " + e.getDepartment());
         }
     }
 
+    // Recursive binary search: returns the index of a match, or -1 if not found
+    public static int searchRecursive(ArrayList<Employee> list, String name, int low, int high) {
+        if (low > high) {
+            return -1; // base case: not found
+        }
+
+        int mid = low + (high - low) / 2;
+        int cmp = list.get(mid).getFname().compareToIgnoreCase(name);
+
+        if (cmp == 0) {
+            return mid;
+        } else if (cmp < 0) {
+            return searchRecursive(list, name, mid + 1, high); // name is later in the list
+        } else {
+            return searchRecursive(list, name, low, mid - 1);  // name is earlier in the list
+        }
+    }
 }

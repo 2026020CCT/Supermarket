@@ -77,14 +77,17 @@ public class Supermarket {
 
     // 2. Search method
     public static void searchEmployee(Scanner sc) {
+        System.out.println("!! Reminder !!! list is going to be sorting !!");
+        Sorting.quickSort(employeeList);
         System.out.println("\n--- Search Employee ---");
-        System.out.print("Enter name to search: ");
+        System.out.print("Enter name to search:  ");
         String name = sc.nextLine();
-
+        Search.search(employeeList, name);
     }
 
     // 3. Add new employee method
     public static void addNewEmployee(Scanner sc) {
+        
         System.out.println("\n--- Add New Employee ---");
     }
 
