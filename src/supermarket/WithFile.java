@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class WithFile {
 
-    public static ArrayList<Employee> readEmployeesFromFile(String filename) {
+    public static ArrayList<Employee> readEmployeesFromFile(String filename, ArrayList<String> deplist) {
         ArrayList<Employee> list = new ArrayList<>();
-
+//        ArrayList<String> departmentList = new ArrayList<>();
         try {
             File file = new File(filename);
             Scanner fileScanner = new Scanner(file);
@@ -30,11 +30,13 @@ public class WithFile {
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
                 String[] data = line.split(",");
-                System.out.println(data[0]+data[1]+data[2]+data[3]+data[4]+data[5]+data[6]+data[7]+data[8]);
+                System.out.println(data[0] + data[1] + data[2] + data[3] + data[4] + data[5] + data[6] + data[7] + data[8]);
                 // Example assuming the file format is:
                 // FirstName,LastName,Department,Position,ManagerType,Salary
                 if (data.length >= 6) {
-                    
+                    if (!deplist.contains(data[5])) {
+                        deplist.add(data[5]);
+                    }
                     double salary = Double.parseDouble(data[4].trim());
                     Employee emp = new Employee(data[0].trim(), data[1].trim(), data[2].trim(), data[3].trim(), salary, data[5].trim(), data[6].trim(), data[7].trim(), data[8].trim());
                     list.add(emp);
@@ -51,5 +53,8 @@ public class WithFile {
         }
 
         return list;
+    }
+    public static void toFile(ArrayList<Employee> list){
+        
     }
 }

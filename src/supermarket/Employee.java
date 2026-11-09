@@ -4,13 +4,16 @@
  */
 package supermarket;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author eska
  */
 public class Employee extends Person {
 
-    private static int nextId =1;
+    private static int nextId = 1;
     private double salary;
     private String department;
     private String position;
@@ -25,6 +28,7 @@ public class Employee extends Person {
         this.jobTitle = jobTitle;
         this.company = company;
         nextId++;
+        
     }
 
     public String getDepartment() {
@@ -35,10 +39,10 @@ public class Employee extends Person {
         return position;
     }
 
-    public String getJobTitle(){
+    public String getJobTitle() {
         return jobTitle;
     }
-    
+
     public String getCompany() {
         return company;
     }
@@ -49,6 +53,6 @@ public class Employee extends Person {
 
     @Override
     public String toString() {
-        return super.toString() +" | Salary: " + salary + " | Dept: " + department +" | Position: " + position+ " | Job Title: "+jobTitle+" | Company: " + company;
+        return super.toString() + " | Salary: " + salary + " | Dept: " + department + " | Position: " + position + " | Job Title: " + jobTitle + " | Company: " + company;
     }
 }

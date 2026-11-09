@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Supermarket {
 
     private static ArrayList<Employee> employeeList = new ArrayList<>();
-
+    private static ArrayList<String> departmentList = new ArrayList<>();
     /**
      * @param args the command line arguments
      */
@@ -87,8 +87,10 @@ public class Supermarket {
 
     // 3. Add new employee method
     public static void addNewEmployee(Scanner sc) {
-        
         System.out.println("\n--- Add New Employee ---");
+        Employee newEmployee = AddEmployee.addEmployee(sc, departmentList, employeeList);
+        Sorting.addToArray(employeeList, newEmployee);
+        
     }
 
     // 4. Binary Tree method
@@ -98,7 +100,7 @@ public class Supermarket {
 
     // Optional: Load some sample data
     public static void loadSampleData() {
-        employeeList = WithFile.readEmployeesFromFile("SampleData.txt");
+        employeeList = WithFile.readEmployeesFromFile("SampleData.txt",departmentList);
         System.out.println("Sample data loaded successfully.");
     }
 }
