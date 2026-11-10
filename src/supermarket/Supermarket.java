@@ -90,12 +90,16 @@ public class Supermarket {
         System.out.println("\n--- Add New Employee ---");
         Employee newEmployee = AddEmployee.addEmployee(sc, departmentList, employeeList);
         Sorting.addToArray(employeeList, newEmployee);
+        System.out.println(newEmployee.getFname()+"Named employee added.");
         
     }
 
     // 4. Binary Tree method
     public static void createBinaryTree() {
         System.out.println("\n--- Creating Employee Hierarchy (Binary Tree) ---");
+//        BinaryTree.mainTree();
+        BinaryTree tree = new BinaryTree();
+        tree.mainTree(employeeList);
     }
 
     // Optional: Load some sample data
