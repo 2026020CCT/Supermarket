@@ -72,7 +72,7 @@ public class BinaryTree {
 
             for (int i = 0; i < size; i++) {
                 TreeNode root = queue.poll();
-                System.out.print(root.employee + " ");
+                System.out.print("["+root.employee.getFullName() + "] ");
 
                 if (root.left != null) {
                     queue.add(root.left);
@@ -99,6 +99,7 @@ public class BinaryTree {
             i++;
         }
         levelOrder();
+        System.out.println("Total of nodes: "+list.size());
 
     }
 
